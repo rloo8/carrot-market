@@ -21,7 +21,8 @@ export default function Home() {
         </div>
         <button
           className="block mt-5 bg-blue-500 text-white p-3 text-center rounded-xl w-2/3 mx-auto
-
+          hover:bg-teal-500 hover:text-black
+          active:bg-yellow-500 focus:bg-red-500
         "
         >
           ChectOut
