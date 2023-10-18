@@ -4,16 +4,18 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <div className="bg-slate-400 py-20 px-20 grid gap-10 min-h-screen">
-      <div className="bg-white p-6 rounded-3xl shadow-xl">
-        <span className="font-semibold text-3xl">Select Item</span>
+    <div className="dark bg-slate-400 py-20 px-20 grid gap-10 lg:grid-cols-2 xl:grid-cols-3 xl:place-content-center min-h-screen">
+      <div className="bg-white dark:bg-black p-6 rounded-3xl shadow-xl">
+        <span className="font-semibold text-3xl dark:text-white">
+          Select Item
+        </span>
         <div className="flex justify-between my-2">
           <span className="text-gray-500">Grey Chair</span>
-          <span className="font-semibold">$19</span>
+          <span className="font-semibold dark:text-white">$19</span>
         </div>
         <div className="flex justify-between">
           <span className="text-gray-500">Grey Chair</span>
-          <span className="font-semibold">$19</span>
+          <span className="font-semibold dark:text-white">$19</span>
         </div>
         <div className="flex justify-between mt-2 pt-2 border-t-2 border-dashed">
           <span>Total</span>
@@ -28,9 +30,8 @@ export default function Home() {
           ChectOut
         </button>
       </div>
-
       <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-        <div className="bg-blue-500 p-6 pb-14">
+        <div className="bg-blue-500 p-6 pb-14 xl:pb-40">
           <span className="text-white text-2xl">Profile</span>
         </div>
         <div className="rounded-3xl p-6 relative -top-5 bg-white">
@@ -51,8 +52,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      <div className="bg-white p-6 rounded-3xl shadow-xl">
+      <div className="bg-white p-6 rounded-3xl shadow-xl lg:col-span-2 xl:col-span-1">
         <div className="flex justify-between items-center mb-5">
           <span>⬅️</span>
           <div className="space-x-3">
