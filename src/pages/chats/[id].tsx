@@ -22,7 +22,7 @@ export default function ChatDetail() {
         </div>
       </div>
 
-      <div className="fixed bottom-4     left-0 right-0 mx-auto w-full max-w-md ">
+      <div className="fixed bottom-4 left-0 right-0 mx-auto w-full max-w-md ">
         <div className="relative flex items-center">
           <input
             type="text"
