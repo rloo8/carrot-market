@@ -1,3 +1,4 @@
+import Button from "@/components/button";
 import Layout from "@/components/layout";
 
 export default function ItemDetail() {
@@ -31,10 +32,8 @@ export default function ItemDetail() {
               the first motherfucker to get shot. You understand?
             </p>
             <div className="flex items-center justify-between gap-2">
-              <button className="flex-1 bg-orange-500 text-white font-medium py-3 rounded-md shadow-md focus:outline-none hover:bg-orange-600">
-                Talk to seller
-              </button>
-              <button className="p-3 flex items-center justify-center text-gray-400 hover:bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+              <Button text="Talk to seller" />
+              <button className="p-3 mt-5 flex items-center justify-center text-gray-400 hover:bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
                 <svg
                   className="h-6 w-6 "
                   xmlns="http://www.w3.org/2000/svg"

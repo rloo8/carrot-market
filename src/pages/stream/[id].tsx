@@ -1,4 +1,5 @@
 import Layout from "@/components/layout";
+import Message from "@/components/message";
 
 export default function StreamDetail() {
   return (
@@ -10,75 +11,16 @@ export default function StreamDetail() {
         </h3>
 
         <div className="py-10 px-4 space-y-4 h-[50vh] overflow-y-scroll">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>Hi how much are you selling them for?</p>
-            </div>
-          </div>
-
-          <div className="flex flex-row-reverse items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>I want ￦20,000</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>Hi how much are you selling them for?</p>
-            </div>
-          </div>
-
-          <div className="flex flex-row-reverse items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>I want ￦20,000</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>Hi how much are you selling them for?</p>
-            </div>
-          </div>
-
-          <div className="flex flex-row-reverse items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>I want ￦20,000</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>Hi how much are you selling them for?</p>
-            </div>
-          </div>
-
-          <div className="flex flex-row-reverse items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>I want ￦20,000</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>Hi how much are you selling them for?</p>
-            </div>
-          </div>
-
-          <div className="flex flex-row-reverse items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-400" />
-            <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-              <p>I want ￦20,000</p>
-            </div>
-          </div>
+          <Message message="Hi how much are you selling them for?" />
+          <Message IsReversed message="I want ￦20,000" />
+          <Message message="Hi how much are you selling them for?" />
+          <Message IsReversed message="I want ￦20,000" />
+          <Message message="Hi how much are you selling them for?" />
+          <Message IsReversed message="I want ￦20,000" />
+          <Message message="Hi how much are you selling them for?" />
+          <Message IsReversed message="I want ￦20,000" />
+          <Message message="Hi how much are you selling them for?" />
+          <Message IsReversed message="I want ￦20,000" />
         </div>
 
         <div className="fixed bottom-4 left-0 right-0 mx-auto w-full max-w-lg ">

@@ -1,3 +1,5 @@
+import Button from "@/components/button";
+import Input from "@/components/input";
 import { useState } from "react";
 
 function cls(...classnames: string[]) {
@@ -42,37 +44,27 @@ export default function Enter() {
         </div>
 
         <form className="flex flex-col mt-8">
-          <label htmlFor="input" className="text-sm font-medium text-gray-500">
-            {method === "email" ? "Email address" : null}
-            {method === "phone" ? "Phone number" : null}
-          </label>
-          <div className="mt-1">
-            {method === "email" ? (
-              <input
-                id="input"
-                type="email"
-                required
-                className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-              />
-            ) : null}
-            {method === "phone" ? (
-              <div className="flex rounded-md shadow-sm ">
-                <span className="flex items-center justify-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 select-none text-sm">
-                  +82
-                </span>
-                <input
-                  id="input"
-                  type="number"
-                  required
-                  className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-md rounded-l-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-                />
-              </div>
-            ) : null}
-          </div>
-          <button className="mt-5 bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm font-medium focus:outline-none">
-            {method === "email" ? "Get login link" : null}
-            {method === "phone" ? "Get one-time password" : null}
-          </button>
+          {method === "email" ? (
+            <Input
+              kind="text"
+              label="Email address"
+              name="email"
+              type="email"
+              required
+            />
+          ) : null}
+          {method === "phone" ? (
+            <Input
+              kind="phone"
+              label="Phone number"
+              name="phone"
+              type="number"
+              required
+            />
+          ) : null}
+
+          {method === "email" ? <Button text="Get login link" /> : null}
+          {method === "phone" ? <Button text="Get one-time password" /> : null}
         </form>
 
         <div className="mt-6">

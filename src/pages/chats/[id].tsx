@@ -1,29 +1,13 @@
 import Layout from "@/components/layout";
+import Message from "@/components/message";
 
 export default function ChatDetail() {
   return (
     <Layout title="채팅" canGoBack>
       <div className="px-4 space-y-4">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-slate-400" />
-          <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-            <p>Hi how much are you selling them for?</p>
-          </div>
-        </div>
-
-        <div className="flex flex-row-reverse items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-slate-400" />
-          <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-            <p>I want ￦20,000</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-slate-400" />
-          <div className="w-1/2 text-sm text-gray-700 p-2 border border-gray-400 rounded-md">
-            <p>미쳤어</p>
-          </div>
-        </div>
+        <Message message="Hi how much are you selling them for?" />
+        <Message IsReversed message="I want ￦20,000" />
+        <Message message="미쳤어" />
 
         <div className="fixed bottom-4 left-0 right-0 mx-auto w-full max-w-lg ">
           <div className="relative flex items-center">
