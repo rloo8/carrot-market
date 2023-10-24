@@ -50,7 +50,13 @@ export default function Layout({
       <div className={cls("pt-20", hasTabBar ? "pb-28" : "")}>{children}</div>
       {hasTabBar ? (
         <nav className="fixed bottom-0 w-full max-w-xl flex justify-around items-center py-4 bg-white text-gray-800 border-t">
-          <Link href="/" className="flex flex-col items-center gap-2">
+          <Link
+            href="/"
+            className={cls(
+              "flex flex-col items-center gap-2",
+              router.pathname === "/" ? "text-orange-500" : "text-gray-800"
+            )}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -67,7 +73,15 @@ export default function Layout({
             </svg>
             <span>홈</span>
           </Link>
-          <Link href="/community" className="flex flex-col items-center gap-2">
+          <Link
+            href="/community"
+            className={cls(
+              "flex flex-col items-center gap-2",
+              router.pathname === "/community"
+                ? "text-orange-500"
+                : "text-gray-800"
+            )}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -84,7 +98,13 @@ export default function Layout({
             </svg>
             <span>동네생활</span>
           </Link>
-          <Link href="/chats" className="flex flex-col items-center gap-2">
+          <Link
+            href="/chats"
+            className={cls(
+              "flex flex-col items-center gap-2",
+              router.pathname === "/chats" ? "text-orange-500" : "text-gray-800"
+            )}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -101,7 +121,15 @@ export default function Layout({
             </svg>
             <span>채팅</span>
           </Link>
-          <Link href="/stream" className="flex flex-col items-center gap-2">
+          <Link
+            href="/stream"
+            className={cls(
+              "flex flex-col items-center gap-2",
+              router.pathname === "/stream"
+                ? "text-orange-500"
+                : "text-gray-800"
+            )}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -117,7 +145,15 @@ export default function Layout({
             </svg>
             <span>라이브</span>
           </Link>
-          <Link href="/profile" className="flex flex-col items-center gap-2">
+          <Link
+            href="/profile"
+            className={cls(
+              "flex flex-col items-center gap-2",
+              router.pathname === "/profile"
+                ? "text-orange-500"
+                : "text-gray-800"
+            )}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
