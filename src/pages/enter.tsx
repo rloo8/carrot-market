@@ -2,6 +2,7 @@ import Button from "@/components/button";
 import Input from "@/components/input";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useMutation from "../../libs/client/useMutation";
 
 function cls(...classnames: string[]) {
   return classnames.join(" ");
@@ -13,9 +14,9 @@ interface EnterForm {
 }
 
 export default function Enter() {
+  const [enter, { IsLoading, data, error }] = useMutation("/api/users/enter");
   const { register, reset, handleSubmit } = useForm<EnterForm>();
 
-  const [IsLoading, setIsLoading] = useState(false);
   const [method, setMethod] = useState<"email" | "phone">("email");
   const onEmailClick = () => {
     setMethod("email");
@@ -26,18 +27,11 @@ export default function Enter() {
     reset();
   };
 
-  const onValid = (data: EnterForm) => {
-    setIsLoading(true);
-    fetch("/api/users/enter", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => {
-      setIsLoading(false);
-    });
+  const onValid = (validForm: EnterForm) => {
+    enter(validForm);
   };
+
+  console.log(IsLoading, data, error);
 
   return (
     <div className="mt-16 px-4">
@@ -95,10 +89,10 @@ export default function Enter() {
           ) : null}
 
           {method === "email" ? (
-            <Button text={IsLoading ? "Loaindg..." : "Get login link"} />
+            <Button text={IsLoading ? "Loading..." : "Get login link"} />
           ) : null}
           {method === "phone" ? (
-            <Button text={IsLoading ? "Loaindg..." : "Get one-time password"} />
+            <Button text={IsLoading ? "Loading..." : "Get one-time password"} />
           ) : null}
         </form>
 
