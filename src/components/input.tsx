@@ -5,7 +5,13 @@ interface InputProps {
   kind: "text" | "phone" | "price";
 }
 
-export default function Input({ label, name, kind, ...rest }: InputProps) {
+export default function Input({
+  label,
+  name,
+  kind,
+  register,
+  ...rest
+}: InputProps) {
   return (
     <>
       {kind === "text" ? (
@@ -15,6 +21,7 @@ export default function Input({ label, name, kind, ...rest }: InputProps) {
           </label>
           <input
             id={name}
+            {...register}
             {...rest}
             className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
           />
@@ -31,6 +38,7 @@ export default function Input({ label, name, kind, ...rest }: InputProps) {
             </span>
             <input
               id={name}
+              {...register}
               {...rest}
               className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-md rounded-l-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
             />
@@ -48,6 +56,7 @@ export default function Input({ label, name, kind, ...rest }: InputProps) {
             </div>
             <input
               id={name}
+              {...register}
               {...rest}
               className="appearance-none w-full px-7 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
             />
