@@ -1,8 +1,9 @@
 import Button from "@/components/button";
 import Input from "@/components/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useMutation from "../../libs/client/useMutation";
+import { useRouter } from "next/router";
 
 function cls(...classnames: string[]) {
   return classnames.join(" ");
@@ -47,6 +48,13 @@ export default function Enter() {
     if (tokenLoading) return;
     confrimToken(validForm);
   };
+
+  const router = useRouter();
+  useEffect(() => {
+    if (tokenData?.ok) {
+      router.push("/");
+    }
+  }, [tokenData, router]);
 
   return (
     <div className="mt-16 px-4">
