@@ -1,9 +1,14 @@
 import Button from "@/components/button";
 import Layout from "@/components/layout";
+import useMutation from "@libs/client/useMutation";
 import { Item, User } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+
+function cls(...classnames: string[]) {
+  return classnames.join(" ");
+}
 
 interface ItemWithUser extends Item {
   user: User;
@@ -13,6 +18,7 @@ interface ItemDetailResponse {
   ok: boolean;
   item: ItemWithUser;
   similarItems: Item[];
+  isLiked: boolean;
 }
 
 export default function ItemDetail() {
@@ -20,7 +26,11 @@ export default function ItemDetail() {
   const { data } = useSWR<ItemDetailResponse>(
     router.query.id ? `/api/items/${router.query.id}` : null
   );
-  console.log(data);
+
+  const [toggleFav] = useMutation(`/api/items/${router.query.id}/fav`);
+  const onFavClick = () => {
+    toggleFav({});
+  };
 
   return (
     <Layout title="아이템" canGoBack>
@@ -52,11 +62,17 @@ export default function ItemDetail() {
             </p>
             <div className="flex items-center justify-between gap-2">
               <Button text="Talk to seller" />
-              <button className="p-3 mt-5 flex items-center justify-center text-gray-400 hover:bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+              <button
+                onClick={onFavClick}
+                className={cls(
+                  "p-3 mt-5 flex items-center justify-center hover:bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500",
+                  data?.isLiked ? "text-red-500" : "text-gray-400"
+                )}
+              >
                 <svg
                   className="h-6 w-6 "
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
+                  fill={data?.isLiked ? "currentColor" : "none"}
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   aria-hidden="true"
