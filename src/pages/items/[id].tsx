@@ -77,8 +77,8 @@ export default function ItemDetail() {
           <h2 className="text-2xl font-bold">Similar items</h2>
           <div className="grid grid-cols-2 gap-4 mt-6">
             {data?.similarItems.map((item) => (
-              <Link href={`/items/${item.id}`}>
-                <div key={item.id}>
+              <Link href={`/items/${item.id}`} key={item.id}>
+                <div>
                   <div className="h-56 w-full bg-slate-300 mb-2" />
                   <h3 className="text-gray-700">{item.name}</h3>
                   <p className="text-sm font-semibold text-gray-900">
