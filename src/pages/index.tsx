@@ -1,23 +1,29 @@
 import FloatButton from "@/components/float-button";
-import Item from "@/components/item";
+import Product from "@/components/item";
 import Layout from "@/components/layout";
 import useUser from "@libs/client/useUser";
-import { Inter } from "next/font/google";
+import { Item } from "@prisma/client";
+import useSWR from "node_modules/swr/core/dist";
 
-const inter = Inter({ subsets: ["latin"] });
+interface ItemsResponse {
+  ok: boolean;
+  items: Item[];
+}
 
 export default function Home() {
   const { user, isLoading } = useUser();
-  console.log(user);
+  const { data } = useSWR<ItemsResponse>("/api/items");
+  console.log(data);
+
   return (
     <Layout title="홈" hasTabBar>
       <div className="flex flex-col space-y-5">
-        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, i) => (
-          <Item
-            key={i}
-            id={i}
-            title="iPhone 15"
-            price={99}
+        {data?.items?.map((item) => (
+          <Product
+            key={item.id}
+            id={item.id}
+            title={item.name}
+            price={item.price}
             hearts={1}
             comments={1}
           />
