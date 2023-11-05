@@ -22,9 +22,25 @@ async function handler(
       },
     },
   });
+
+  const terms = item?.name.split(" ").map((word) => ({
+    name: {
+      contains: word,
+    },
+  }));
+  const similarItems = await client.item.findMany({
+    where: {
+      OR: terms,
+      NOT: {
+        id: item?.id,
+      },
+    },
+  });
+
   res.json({
     ok: true,
     item,
+    similarItems,
   });
 }
 

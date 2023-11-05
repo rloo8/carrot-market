@@ -1,12 +1,23 @@
 import Button from "@/components/button";
 import Layout from "@/components/layout";
+import { Item, User } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
+interface ItemWithUser extends Item {
+  user: User;
+}
+
+interface ItemDetailResponse {
+  ok: boolean;
+  item: ItemWithUser;
+  similarItems: Item[];
+}
+
 export default function ItemDetail() {
   const router = useRouter();
-  const { data } = useSWR(
+  const { data } = useSWR<ItemDetailResponse>(
     router.query.id ? `/api/items/${router.query.id}` : null
   );
   console.log(data);
@@ -65,12 +76,16 @@ export default function ItemDetail() {
         <div>
           <h2 className="text-2xl font-bold">Similar items</h2>
           <div className="grid grid-cols-2 gap-4 mt-6">
-            {[1, 2, 3, 4, 5, 6].map((_, i) => (
-              <div key={i}>
-                <div className="h-56 w-full bg-slate-300 mb-2" />
-                <h3 className="text-gray-700">Galaxy S60</h3>
-                <p className="text-sm font-semibold text-gray-900">$6</p>
-              </div>
+            {data?.similarItems.map((item) => (
+              <Link href={`/items/${item.id}`}>
+                <div key={item.id}>
+                  <div className="h-56 w-full bg-slate-300 mb-2" />
+                  <h3 className="text-gray-700">{item.name}</h3>
+                  <p className="text-sm font-semibold text-gray-900">
+                    ${item.price}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
