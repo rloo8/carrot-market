@@ -2,11 +2,43 @@ import Button from "@/components/button";
 import Input from "@/components/input";
 import Layout from "@/components/layout";
 import Textarea from "@/components/textarea";
+import useMutation from "@libs/client/useMutation";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { Item } from "@prisma/client";
+import { useRouter } from "next/router";
+
+interface UploadItemForm {
+  name: string;
+  price: number;
+  description: string;
+}
+
+interface UploadItemMutation {
+  ok: boolean;
+  item: Item;
+}
 
 export default function Upload() {
+  const router = useRouter();
+  const { register, handleSubmit } = useForm<UploadItemForm>();
+  const [uploadItem, { IsLoading, data }] =
+    useMutation<UploadItemMutation>("/api/items");
+
+  const onVaild = (data: UploadItemForm) => {
+    if (IsLoading) return;
+    uploadItem(data);
+  };
+
+  useEffect(() => {
+    if (data?.ok) {
+      router.push(`/items/${data.item.id}`);
+    }
+  }, [data, router]);
+
   return (
     <Layout title="업로드" canGoBack>
-      <div className="px-4 space-y-5">
+      <form onSubmit={handleSubmit(onVaild)} className="px-4 space-y-5">
         <div>
           <label className="w-full h-48 flex items-center justify-center border-2 border-dashed rounded-md border-gray-300 hover:border-orange-500 hover:text-orange-500 cursor-pointer">
             <svg
@@ -27,11 +59,30 @@ export default function Upload() {
           </label>
         </div>
 
-        <Input kind="text" label="Name" name="name" type="text" required />
-        <Input kind="price" label="Price" name="price" type="text" required />
-        <Textarea label={"Description"} name="description" rows={4} />
-        <Button text="Upload product" />
-      </div>
+        <Input
+          register={register("name", { required: true })}
+          kind="text"
+          label="Name"
+          name="name"
+          type="text"
+          required
+        />
+        <Input
+          register={register("price", { required: true })}
+          kind="price"
+          label="Price"
+          name="price"
+          type="text"
+          required
+        />
+        <Textarea
+          register={register("description", { required: true })}
+          label={"Description"}
+          name="description"
+          rows={4}
+        />
+        <Button text={IsLoading ? "Loading..." : "Upload product"} />
+      </form>
     </Layout>
   );
 }
