@@ -5,9 +5,13 @@ import useUser from "@libs/client/useUser";
 import { Item } from "@prisma/client";
 import useSWR from "node_modules/swr/core/dist";
 
+interface ItemWithCount extends Item {
+  _count: { Fav: number };
+}
+
 interface ItemsResponse {
   ok: boolean;
-  items: Item[];
+  items: ItemWithCount[];
 }
 
 export default function Home() {
@@ -24,8 +28,7 @@ export default function Home() {
             id={item.id}
             title={item.name}
             price={item.price}
-            hearts={1}
-            comments={1}
+            hearts={item._count.Fav}
           />
         ))}
 

@@ -4,7 +4,7 @@ import useMutation from "@libs/client/useMutation";
 import { Item, User } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 
 function cls(...classnames: string[]) {
   return classnames.join(" ");
@@ -23,14 +23,15 @@ interface ItemDetailResponse {
 
 export default function ItemDetail() {
   const router = useRouter();
-  const { data, mutate } = useSWR<ItemDetailResponse>(
+  const { data, mutate: boundMutate } = useSWR<ItemDetailResponse>(
     router.query.id ? `/api/items/${router.query.id}` : null
   );
-
+  const { mutate: unboundMutate } = useSWRConfig();
   const [toggleFav] = useMutation(`/api/items/${router.query.id}/fav`);
   const onFavClick = () => {
     if (!data) return;
-    mutate({ ...data, isLiked: !data.isLiked }, false);
+    boundMutate({ ...data, isLiked: !data.isLiked }, false);
+    // unboundMutate("/api/users/me", (prev: any) => ({ ok: !prev.ok }), false);
     toggleFav({});
   };
 
